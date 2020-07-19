@@ -2,6 +2,7 @@
 *.iml
 .idea/
 out/
+lib/
 
 # Others
 backups/

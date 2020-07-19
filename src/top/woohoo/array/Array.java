@@ -42,6 +42,9 @@ public class Array<T> {
             return data[index];
         }
     }
+    public T getLast() {
+        return data[this.size-1];
+    }
     public void show() {
         System.out.println(this.toString());;
     }
@@ -94,7 +97,11 @@ public class Array<T> {
         }
         // 备份被删除值，并将其后面的位向前挪
         T temp = this.data[index];
-        System.arraycopy(this.data, index + 1, this.data, index + 1 - 1, size - index + 1);
+        if (this.size == index + 1) {
+            this.data[index] = null;
+        } else {
+            System.arraycopy(this.data, index + 1, this.data, index, size - index + 1);
+        }
 
         // 判断是否有缩容需求，并返回被删除数值
         if(--size <= capacity/4) {
@@ -113,9 +120,12 @@ public class Array<T> {
             this.shrinkage();
         }
     }
+    public T removeLast() {
+        return this.removeByIndex(this.size-1);
+    }
     public void removeAll() {
         this.data = (T[])new Object[capacity];
-        this.size=0;
+        this.size = 0;
     }
 
     // 搜索数据

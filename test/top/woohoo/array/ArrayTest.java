@@ -1,7 +1,11 @@
 package top.woohoo.array;
 
+import org.junit.Test;
+
 public class ArrayTest {
-    public static void main(String[] args) {
+
+    @Test
+    public void ExpansionAndShrinkageTest() {
         Array<Integer> array = new Array<>(32);
         Integer[] temp = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
