@@ -97,10 +97,11 @@ public class Array<T> {
         }
         // 备份被删除值，并将其后面的位向前挪
         T temp = this.data[index];
+        // 若被删除值已是最后一位，无需挪位
         if (this.size == index + 1) {
             this.data[index] = null;
         } else {
-            System.arraycopy(this.data, index + 1, this.data, index, size - index + 1);
+            System.arraycopy(this.data, index + 1, this.data, index, size - 1 - index);
         }
 
         // 判断是否有缩容需求，并返回被删除数值
