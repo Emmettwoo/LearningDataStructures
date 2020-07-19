@@ -12,11 +12,11 @@ public class ArrayStack<T> implements Stack<T> {
         array = new Array<>(capacity);
     }
 
+
     @Override
     public int getSize() {
         return array.getSize();
     }
-
     @Override
     public boolean isEmpty() {
         return array.isEmpty();
@@ -26,7 +26,6 @@ public class ArrayStack<T> implements Stack<T> {
     public void push(T value) {
         array.add(value);
     }
-
     @Override
     public T pop() {
         return array.removeLast();
@@ -40,7 +39,7 @@ public class ArrayStack<T> implements Stack<T> {
 
     @Override
     public String toString() {
-        if (this.isEmpty()) {
+        if (array.isEmpty()) {
             return "Stack is empty";
         } else {
             int stackSize = this.array.getSize();
