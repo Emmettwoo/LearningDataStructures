@@ -1,5 +1,10 @@
 package top.woohoo.queue;
 
+/**
+ * 基于Array实现循环队列（区别于线性队列）。
+ * 由于需要tail属性，该类内将重写原有的Array逻辑。
+ * @see top.woohoo.array.Array
+ */
 public class LoopQueue<T> implements Queue<T> {
 
     private T[] data;
