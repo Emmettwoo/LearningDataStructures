@@ -42,11 +42,11 @@ public class ArrayQueue<T> implements Queue<T> {
         if (array.isEmpty()) {
             return "Queue is empty";
         } else {
-            int queueSize = this.array.getSize();
+            int queueSize = array.getSize();
             StringBuilder dataString = new StringBuilder();
             // 这里的实现方法不符合栈的特性，其实使用了数组的方法。
             for (int index = 0; index < queueSize; index++) {
-                dataString.append(this.array.get(index));
+                dataString.append(array.get(index));
                 if (index != queueSize-1) {
                     dataString.append(", ");
                 }

@@ -96,14 +96,14 @@ public class SinglyLinkedList<T> {
     }
     private Node seekByIndex(int index) {
         Node currentNode = dummyHead;
-        for(int i = 0; i < index + 1; i++) {
+        for (int i = 0; i < index + 1; i++) {
             currentNode = currentNode.next;
         }
         return currentNode;
     }
     private Node seekByValue(T value) {
         Node currentNode = dummyHead.next;
-        while(currentNode != null) {
+        while (currentNode != null) {
             if (currentNode.value.equals(value)) {
                 return currentNode;
             } else {
@@ -118,7 +118,7 @@ public class SinglyLinkedList<T> {
     public String toString() {
         StringBuilder dataString = new StringBuilder();
         Node currentNode = dummyHead.next;
-        while(currentNode != null) {
+        while (currentNode != null) {
             dataString.append(currentNode.value).append(" -> ");
             currentNode = currentNode.next;
         }

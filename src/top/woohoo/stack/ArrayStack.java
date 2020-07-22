@@ -42,11 +42,11 @@ public class ArrayStack<T> implements Stack<T> {
         if (array.isEmpty()) {
             return "Stack is empty";
         } else {
-            int stackSize = this.array.getSize();
+            int stackSize = array.getSize();
             StringBuilder dataString = new StringBuilder();
             // 这里的实现方法不符合栈的特性，其实使用了数组的方法。
             for (int index = 0; index < stackSize; index++) {
-                dataString.append(this.array.get(index));
+                dataString.append(array.get(index));
                 if (index != stackSize-1) {
                     dataString.append(", ");
                 }

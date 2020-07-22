@@ -34,15 +34,15 @@ public class LoopQueue<T> implements Queue<T> {
         if (this.isFull()) {
             this.expansion();
         }
-        this.data[tail % capacity] = value;
+        data[tail % capacity] = value;
         tail = (tail + 1) % capacity;
     }
 
     @Override
     public T dequeue() {
         if (!this.isEmpty()) {
-            T value = this.data[front];
-            this.data[front] = null;
+            T value = data[front];
+            data[front] = null;
             front = (front + 1) % capacity;
 
             if (this.getSize() <= capacity/4) {
@@ -57,33 +57,33 @@ public class LoopQueue<T> implements Queue<T> {
 
     @Override
     public T getFront() {
-        return this.data[front];
+        return data[front];
     }
 
 
     // 扩容与缩容
     private void expansion() {
-        if (this.data.length / 2 != 0) {
-            this.capacity *= 2;
+        if (data.length / 2 != 0) {
+            capacity *= 2;
             // 复制旧data
             int queueSize = this.getSize();
             T[] newData = (T[])new Object[capacity];
             for (int index = 0; index < queueSize; index++) {
-                newData[front + index] = this.data[(front + index) % (capacity / 2)];
+                newData[front + index] = data[(front + index) % (capacity / 2)];
             }
-            this.data = newData;
+            data = newData;
         }
     }
     private void shrinkage() {
-        if (this.capacity/2 > 0) {
+        if (capacity/2 > 0) {
             // 复制旧data
             int queueSize = this.getSize();
-            this.capacity /= 2;
+            capacity /= 2;
             T[] newData = (T[])new Object[capacity];
             for (int index = 0; index < queueSize; index++) {
-                newData[(front + index) % capacity] = this.data[(front + index) % (capacity * 2)];
+                newData[(front + index) % capacity] = data[(front + index) % (capacity * 2)];
             }
-            this.data = newData;
+            data = newData;
             front%=capacity;
         }
     }
@@ -97,7 +97,7 @@ public class LoopQueue<T> implements Queue<T> {
             int queueSize = this.getSize();
             StringBuilder dataString = new StringBuilder();
             for (int index = 0; index < queueSize; index++) {
-                dataString.append(this.data[(index + front) % capacity]);
+                dataString.append(data[(index + front) % capacity]);
                 if (index != queueSize-1) {
                     dataString.append(", ");
                 }
