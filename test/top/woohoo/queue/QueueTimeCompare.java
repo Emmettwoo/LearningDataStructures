@@ -3,8 +3,6 @@ package top.woohoo.queue;
 import top.woohoo.utils.RandomUtil;
 import top.woohoo.utils.TimingUtil;
 
-import java.util.ArrayList;
-
 public class QueueTimeCompare {
     private static final int DATA_SIZE = 100000;
     /*
