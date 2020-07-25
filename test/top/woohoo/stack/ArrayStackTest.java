@@ -28,36 +28,4 @@ public class ArrayStackTest {
             System.out.println(arrayStack);
         }
     }
-
-    @Test
-    public void LeetCode20() {
-        ArrayStack<Character> arrayStack = new ArrayStack<>();
-        String testData = "[{{([()])}}]";
-
-        for (int index = 0; index < testData.length(); index++) {
-            char target = testData.charAt(index);
-            if (target == '{' || target == '[' || target == '(') {
-                arrayStack.push(target);
-            } else {
-                if (!arrayStack.isEmpty()) {
-                    char topValue = arrayStack.pop();
-                    if (target == '}' && topValue != '{') {
-                        System.out.println("false");
-                    } else if (target == ']' && topValue != '[') {
-                        System.out.println("false");
-                    } else if (target == ')' && topValue != '(') {
-                        System.out.println("false");
-                    }
-                } else {
-                    System.out.println("false");
-                }
-            }
-        }
-
-        if (arrayStack.isEmpty()) {
-            System.out.println("true");
-        } else {
-            System.out.println("false");
-        }
-    }
 }
