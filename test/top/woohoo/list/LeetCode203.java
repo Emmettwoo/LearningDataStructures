@@ -8,6 +8,19 @@ class ListNode {
 }
 
 class LeetCode203 {
+
+    private ListNode removeElementsWithRecursion(ListNode head, int val) {
+        // 到达链表尾部
+        if (head == null) {
+            return null;
+        }
+
+        // 递归取值
+        head.next = removeElementsWithRecursion(head.next, val);
+        // 移除目标
+        return head.val == val ? head.next : head;
+    }
+
     public ListNode removeElements(ListNode head, int val) {
         // 确定新的头结点（如果头节点值是目标元素）
         while (head != null && head.val == val) {
@@ -48,22 +61,16 @@ class LeetCode203 {
             System.out.print(head.val + "->");
             head = head.next;
         }
-        System.out.print("NULL");
+        System.out.print("NULL\n");
     }
 
     public static void main(String[] args) {
         LeetCode203 leetCode203 = new LeetCode203();
 
-        ListNode head = new ListNode(1);
-        ListNode currentNode = head;
-        currentNode.next = new ListNode(2);
-        currentNode = currentNode.next;
-        currentNode.next = new ListNode(2);
-        currentNode = currentNode.next;
-        currentNode.next = new ListNode(1);
+        final int confusionValue = 9;
+        ListNode head = leetCode203.generateTestData(confusionValue);
 
         leetCode203.show(head);
-        System.out.println();
-        leetCode203.show(leetCode203.removeElements(head, 2));
+        leetCode203.show(leetCode203.removeElementsWithRecursion(head, confusionValue));
     }
 }
