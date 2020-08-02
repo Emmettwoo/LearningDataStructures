@@ -5,7 +5,7 @@ import top.woohoo.queue.Queue;
 
 public class BinarySearchTree<T extends Comparable<T>> {
 
-    private class Node {
+    class Node {
         public T value;
         public Node left;
         public Node right;
@@ -221,8 +221,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return node;
     }
 
+
     // 获取元素
-    private Node getMin(Node node) {
+    public Node getMin(Node node) {
         if (this.isEmpty()) {
             throw new IllegalArgumentException("Tree is empty!");
         }
@@ -232,7 +233,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
         return node;
     }
-    private Node getMax(Node node) {
+    public Node getMax(Node node) {
         if (this.isEmpty()) {
             throw new IllegalArgumentException("Tree is empty!");
         }
@@ -241,6 +242,62 @@ public class BinarySearchTree<T extends Comparable<T>> {
             node = node.right;
         }
         return node;
+    }
+    public Node getFloor(T target) {
+        if (this.isEmpty()) {
+            System.out.println("Tree is empty!");
+            return null;
+        } else {
+            return this.getFloor(root, target);
+        }
+    }
+    private Node getFloor(Node node, T target) {
+        // 终止条件
+        if (node == null) {
+            return null;
+        } else if (target.compareTo(node.value) == 0) {
+            return node;
+        }
+
+        // 持续递归
+        if (target.compareTo(node.value) > 0) {
+            Node rightNode = this.getFloor(node.right, target);
+            if (rightNode != null) {
+                return rightNode;
+            } else {
+                return node;
+            }
+        } else {
+            return this.getFloor(node.left, target);
+        }
+    }
+    public Node getCeil(T target) {
+        if (this.isEmpty()) {
+            System.out.println("Tree is empty!");
+            return null;
+        } else {
+            return this.getCeil(root, target);
+        }
+    }
+    private Node getCeil(Node node, T target) {
+        // 终止条件
+        if (node == null) {
+            return null;
+        } else if (target.compareTo(node.value) == 0) {
+            return node;
+        }
+
+        // 持续递归
+        if (target.compareTo(node.value) < 0) {
+            Node leftNode = this.getCeil(node.left, target);
+            if (leftNode != null) {
+                return leftNode;
+            } else {
+                return node;
+            }
+        } else {
+            return this.getCeil(node.right, target);
+        }
     }
     public boolean isEmpty() {
         return size == 0;
