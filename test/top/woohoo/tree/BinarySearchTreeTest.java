@@ -8,9 +8,12 @@ public class BinarySearchTreeTest {
     private BinarySearchTree<Integer> generateIntegerTree(int size, int min, int max) {
         BinarySearchTree<Integer> binarySearchTree = new BinarySearchTree<>();
         Integer[] testData = RandomUtil.generateIntArray(size, min, max);
+        System.out.print("Test Data: ");
         for (Integer value : testData) {
             binarySearchTree.add(value);
+            System.out.print(value + " -> ");
         }
+        System.out.println("NULL");
         return binarySearchTree;
     }
 
@@ -49,5 +52,16 @@ public class BinarySearchTreeTest {
         int targetValue = 42;
         System.out.println(targetValue + "'s floor node value: " + binarySearchTree.getFloor(targetValue).value);
         System.out.println(targetValue + "'s ceil node value: " + binarySearchTree.getCeil(targetValue).value);
+    }
+
+    @Test
+    public void nodeToStringTest() {
+        BinarySearchTree<Integer> binarySearchTree = this.generateIntegerTree(20, 0, 10);
+        binarySearchTree.levelOrder();
+        System.out.println(binarySearchTree.getMax(binarySearchTree.getRoot()));
+        System.out.println(binarySearchTree.getRoot().right);
+        binarySearchTree.removeMax();
+        System.out.println(binarySearchTree.getRoot().right);
+
     }
 }

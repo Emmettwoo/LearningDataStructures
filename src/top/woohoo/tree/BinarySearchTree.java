@@ -7,18 +7,30 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
     class Node {
         public T value;
+        public int size;
+        public int count;
+        // todo: 还可以维护一个depth表所在层次（深度），还没想到实现方法（增删基于递归实现的情况下）。
         public Node left;
         public Node right;
 
         public Node(T value) {
             this.value = value;
+            this.size = 1;
+            this.count = 1;
             this.left = null;
             this.right = null;
+        }
+
+        @Override
+        public String toString() {
+            return "Node value: " + value + ", count: " + count + ", size: " + size + " .";
         }
     }
 
     private Node root;
     private int size;
+    // fixme: 递归删除元素如何保留node的count而不使用这样丑陋的tempRegister方法。
+    private int tempRegister;
 
     // constructors
     public BinarySearchTree() {
@@ -45,8 +57,13 @@ public class BinarySearchTree<T extends Comparable<T>> {
         // 递归查询树的元素
         if (value.compareTo(node.value) < 0) {
             node.left = this.add(node.left, value);
+            node.size++;
         } else if (value.compareTo(node.value) > 0){
             node.right = this.add(node.right, value);
+            node.size++;
+        } else {
+            node.count++;
+            node.size++;
         }
 
         return node;
@@ -161,9 +178,12 @@ public class BinarySearchTree<T extends Comparable<T>> {
         // 持续递归
         if (value.compareTo(node.value) < 0) {
             node.left = remove(node.left, value);
+            node.size-=tempRegister;
         } else if (value.compareTo(node.value) > 0) {
             node.right = remove(node.right, value);
+            node.size-=tempRegister;
         } else {
+            tempRegister = node.count;
             if (node.left == null) {
                 Node rightNode = node.right;
                 node.right = null;
@@ -175,6 +195,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
                 size--;
                 return leftNode;
             } else {
+                // 左右皆有孩子，找左孩子最大值（前驱）或右孩子最小值（后继）
                 Node minNodeAtRight = this.getMin(node.right);
                 node.value = minNodeAtRight.value;
                 removeMin(node.right);
@@ -200,6 +221,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
         // 持续递归
         node.left = removeMin(node.left);
+        node.size--;
         return node;
     }
     public T removeMax() {
@@ -218,6 +240,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
         // 持续递归
         node.right = removeMax(node.right);
+        node.size--;
         return node;
     }
 
@@ -299,11 +322,19 @@ public class BinarySearchTree<T extends Comparable<T>> {
             return this.getCeil(node.right, target);
         }
     }
+    // todo: getRank()和selectByRank()，找不到Rank的定义，实现个屁。
+
+    // 条件判断
     public boolean isEmpty() {
         return size == 0;
     }
     public boolean isSingleNode() {
         return root.left == null & root.right == null;
+    }
+
+    // getters
+    public Node getRoot() {
+        return root;
     }
     public int getSize() {
         return size;
