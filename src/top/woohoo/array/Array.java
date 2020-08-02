@@ -25,10 +25,10 @@ public class Array<T> {
 
     // 判断数据
     public boolean isEmpty() {
-        return size <= 0;
+        return size == 0;
     }
     public boolean isFull() {
-        return size >= capacity;
+        return size == capacity;
     }
     public boolean isOverflow(int index) {
         return index<0 || index>=size;
@@ -143,22 +143,20 @@ public class Array<T> {
 
     // 扩容与缩容
     private void expansion() {
-        if (data.length / 2 != 0) {
-            capacity *= 2;
-            // 复制旧data
-            T[] newData = (T[])new Object[capacity];
-            for (int index=0; index<size; index++) {
-                newData[index] = data[index];
-            }
-            data = newData;
-        }
-    }
-    private void shrinkage() {
-        capacity /= 2;
+        capacity *= 2;
         // 复制旧data
         T[] newData = (T[])new Object[capacity];
         System.arraycopy(data, 0, newData, 0, size);
         data = newData;
+    }
+    private void shrinkage() {
+        if (capacity / 2 > 0) {
+            capacity /= 2;
+            // 复制旧data
+            T[] newData = (T[])new Object[capacity];
+            System.arraycopy(data, 0, newData, 0, size);
+            data = newData;
+        }
     }
 
     @Override
