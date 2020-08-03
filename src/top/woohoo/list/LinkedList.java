@@ -1,6 +1,6 @@
 package top.woohoo.list;
 
-public class SinglyLinkedList<T> {
+public class LinkedList<T> {
     private class Node {
         public T value;
         public Node next;
@@ -26,7 +26,7 @@ public class SinglyLinkedList<T> {
     private int size;
 
     // constructors
-    public SinglyLinkedList() {
+    public LinkedList() {
         dummyHead = new Node();
         size = 0;
     }
@@ -80,6 +80,14 @@ public class SinglyLinkedList<T> {
             return currentNode.value;
         }
     }
+    public int removeByValue(T value) {
+        int removeCount = 0;
+        while (this.contains(value)) {
+            this.remove(this.valueOf(value));
+            removeCount++;
+        }
+        return removeCount;
+    }
 
     // 数据判断
     public boolean isEmpty() {
@@ -87,6 +95,19 @@ public class SinglyLinkedList<T> {
     }
     public boolean contains(T value) {
         return this.seekByValue(value) != null;
+    }
+    public int valueOf(T value) {
+        int counter = 0;
+        Node currentNode = dummyHead.next;
+        while (currentNode != null) {
+            if (currentNode.value.equals(value)) {
+                return counter;
+            } else {
+                counter++;
+                currentNode = currentNode.next;
+            }
+        }
+        return -1;
     }
 
 

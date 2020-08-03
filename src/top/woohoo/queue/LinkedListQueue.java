@@ -1,9 +1,11 @@
 package top.woohoo.queue;
 
+import top.woohoo.list.LinkedList;
+
 /**
  * 基于单向链表实现队列，head为队首（出队），tail为队尾（入队）。
  * 由于需要tail属性，该类内将重写原有的SinglyLinkedList逻辑。
- * @see top.woohoo.list.SinglyLinkedList
+ * @see LinkedList
  */
 public class LinkedListQueue<T> implements Queue<T> {
     private class Node {

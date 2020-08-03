@@ -1,12 +1,12 @@
 package top.woohoo.stack;
 
-import top.woohoo.list.SinglyLinkedList;
+import top.woohoo.list.LinkedList;
 
 public class LinkedListStack<T> implements Stack<T> {
-    private final SinglyLinkedList<T> linkedList;
+    private final LinkedList<T> linkedList;
 
     public LinkedListStack() {
-        linkedList = new SinglyLinkedList<>();
+        linkedList = new LinkedList<>();
     }
 
     @Override
