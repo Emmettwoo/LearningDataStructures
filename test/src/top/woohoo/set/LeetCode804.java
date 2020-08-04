@@ -2,13 +2,11 @@ package top.woohoo.set;
 
 public class LeetCode804 {
 
-    private static String[] words = {"test", "one", "two", "three", "gin", "zen", "gig", "msg"};
+    private static final String[] morseCode = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
 
-    public static void main(String[] args) {
-        String[] morseCode = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
-
+    public int uniqueMorseRepresentations(String[] words) {
         // 使用Set存储，会自动排除重复元素
-        BSTSet<String> set = new BSTSet<>();
+        Set<String> set = new BSTSet<>();
         // 遍历每一个word并转换成morseCode存储
         for (String word : words) {
             StringBuilder stringBuilder = new StringBuilder();
@@ -17,6 +15,15 @@ public class LeetCode804 {
             }
             set.add(stringBuilder.toString());
         }
-        System.out.println(set.getSize());
+        return set.getSize();
     }
+
+    public static void main(String[] args) {
+
+        String[] words = {"gin", "zen", "gig", "msg"};
+
+        LeetCode804 leetCode804 = new LeetCode804();
+        System.out.println(leetCode804.uniqueMorseRepresentations(words));
+    }
+
 }

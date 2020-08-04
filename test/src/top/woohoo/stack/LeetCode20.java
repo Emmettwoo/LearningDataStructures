@@ -27,8 +27,10 @@ public class LeetCode20 {
     }
 
     public static void main(String[] args) {
-        LeetCode20 leetCode20 = new LeetCode20();
+
         String testData = "[{{([()])}}]";
+
+        LeetCode20 leetCode20 = new LeetCode20();
 
         System.out.println(leetCode20.isValid(testData));
     }

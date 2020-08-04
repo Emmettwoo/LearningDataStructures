@@ -17,13 +17,13 @@ Learning Data Structures并不是一个具体的项目，过完这个暑假就�
 - [x] Linked List 链表
 - [x] Binary Search Tree 搜索二叉树
 - [x] Set 集合
-- [ ] Map 映射
+- [x] Map 映射
 - [ ] Priority Queue 优先队列
 - [ ] Heap 堆
 - [ ] Segment Tree 线段树
 - [ ] Trie 字典树
 - [ ] Union Find 并查集
-- [ ] AVL Tree平衡二叉树
+- [ ] AVL Tree 平衡二叉树
 - [ ] Red Black Tree 红黑树
 - [ ] Hash Table 哈希表
 
