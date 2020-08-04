@@ -1,7 +1,6 @@
 package top.woohoo.map;
 
 import org.junit.Test;
-import top.woohoo.set.BSTSet;
 import top.woohoo.utils.FileUtil;
 
 import java.util.ArrayList;
