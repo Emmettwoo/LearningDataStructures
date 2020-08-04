@@ -7,19 +7,9 @@ import java.util.ArrayList;
 
 public class SetTimeCompare {
     /*
-        WHEN Total words = 125901:
+        Test Data: <pride and prejudice> (125901 words)
         bstSet: Total Time: 44 ms
         linkedListSet: Total Time: 441 ms
-        ---
-        WHEN DATA_SIZE = 10000000:
-        arrayStack(test1): Total Time: 2605 ms
-        linkedListStack(test1): Total Time: 1589 ms
-        arrayStack(test2): Total Time: 2705 ms
-        linkedListStack(test2): Total Time: 3125 ms
-        ---
-        WHEN DATA_SIZE = 20000000:
-        arrayStack: Total Time: 656 ms
-        linkedListStack: Total Time: 6382 ms
      */
 
     public static void main(String[] args) {
