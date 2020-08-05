@@ -2,7 +2,7 @@
 
 
 ![Intro.png](./images/Intro.png)
-
+``
 ---
 
 ## Intro.简介
@@ -18,8 +18,8 @@ Learning Data Structures并不是一个具体的项目，过完这个暑假就�
 - [x] Binary Search Tree 搜索二叉树
 - [x] Set 集合
 - [x] Map 映射
-- [ ] Priority Queue 优先队列
-- [ ] Heap 堆
+- [x] Heap 堆
+- [x] Priority Queue 优先队列
 - [ ] Segment Tree 线段树
 - [ ] Trie 字典树
 - [ ] Union Find 并查集

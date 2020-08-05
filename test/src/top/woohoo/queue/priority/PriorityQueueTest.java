@@ -1,28 +1,27 @@
-package top.woohoo.heap;
+package top.woohoo.queue.priority;
 
 import org.junit.Test;
 import top.woohoo.utils.RandomUtil;
 
-public class BinaryMaxHeapTest {
+public class PriorityQueueTest {
 
     @Test
     public void basicTest() {
         final int DATA_SIZE = 20;
 
         Integer[] testData = RandomUtil.generateIntArray(DATA_SIZE, 0, 100);
-        BinaryMaxHeap<Integer> binaryMaxHeap = new BinaryMaxHeap<>(testData);
+        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
 
         System.out.print("Raw Data: ");
         for (int index = 0; index < DATA_SIZE; index++) {
+            priorityQueue.enqueue(testData[index]);
             System.out.print(testData[index] + " -> ");
         }
         System.out.println("NULL");
 
-        binaryMaxHeap.replace(42);
-
         System.out.print("Heap Data: ");
-        while (!binaryMaxHeap.isEmpty()) {
-            System.out.print(binaryMaxHeap.extractMax() + " -> ");
+        while (!priorityQueue.isEmpty()) {
+            System.out.print(priorityQueue.dequeue() + " -> ");
         }
         System.out.println("NULL");
     }
