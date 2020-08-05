@@ -14,6 +14,12 @@ public class BinaryMaxHeap<T extends Comparable<T>> implements Heap<T> {
     public BinaryMaxHeap() {
         data = new Array<>();
     }
+    public BinaryMaxHeap(T[] array) {
+        data = new Array<>(array);
+        for (int index = this.getParent(array.length - 1); index >= 0; index--) {
+            siftDown(index);
+        }
+    }
 
 
     // 数据操作（基础）

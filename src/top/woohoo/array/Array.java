@@ -14,6 +14,12 @@ public class Array<T> {
         this.capacity = capacity;
         this.data = (T[])new Object[capacity];
     }
+    public Array(T[] array) {
+        this.capacity = array.length * 2;
+        this.data = (T[])new Object[capacity];
+        System.arraycopy(array, 0, this.data, 0, array.length);
+        this.size = this.capacity / 2;
+    }
 
     // getters & setters
     public int getCapacity() {
