@@ -87,6 +87,40 @@ public class SegmentTree<T> {
         return data.length;
     }
 
+    // 更新元素
+    public void set(int index, T value) {
+        if (this.isOverflow(index)) {
+            throw new IllegalArgumentException("Index overflow, set failed.");
+        } else {
+            data[index] = value;
+            this.set(0, 0, data.length - 1, index, value);
+        }
+    }
+    private void set(int currentTreeIndex, int leftArrayIndex, int rightArrayIndex, int targetArrayIndex, T value) {
+        // 终止条件
+        if (leftArrayIndex == rightArrayIndex) {
+            tree[currentTreeIndex] = value;
+            return;
+        }
+
+        // 得到左右孩子节点的索引
+        int leftTreeIndex = this.getLeftChildIndex(currentTreeIndex);
+        int rightTreeIndex = this.getRightChildIndex(currentTreeIndex);
+
+        // 用于划分左右界限的中间索引
+        int middleTreeIndex = leftArrayIndex + (rightArrayIndex - leftArrayIndex) / 2;
+
+        // 持续递归
+        if (targetArrayIndex >= middleTreeIndex + 1) {
+            this.set(rightTreeIndex, middleTreeIndex + 1, rightArrayIndex, targetArrayIndex, value);
+        } else {
+            this.set(leftTreeIndex, leftArrayIndex, middleTreeIndex, targetArrayIndex, value);
+        }
+
+        // 非叶子节点，节点值为左右孩子的merge操作
+        this.tree[currentTreeIndex] = this.merger.merge(this.tree[leftTreeIndex], this.tree[rightTreeIndex]);
+    }
+
     // 孩子元素
     private int getLeftChildIndex(int index) {
         return index * 2 + 1;
