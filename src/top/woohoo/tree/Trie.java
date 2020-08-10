@@ -1,8 +1,11 @@
 package top.woohoo.tree;
 
+import top.woohoo.array.Array;
+
 import java.util.TreeMap;
 
 public class Trie {
+
     private static class Node {
         public boolean isWord;
         public TreeMap<Character, Node> next;
@@ -31,6 +34,10 @@ public class Trie {
 
     // 新增元素
     public void add(String value) {
+        if (value.trim().equals("")) {
+            throw new IllegalArgumentException("Blank is not allow here.");
+        }
+
         Node currentNode = root;
         for (int index = 0; index < value.length(); index++) {
             char character = value.charAt(index);
@@ -44,27 +51,35 @@ public class Trie {
             size++;
         }
     }
-    public void addWithRecursion(String value) {
-        this.addWithRecursion(root, 0, value);
+
+    // 删除元素
+    public void remove(String value) {
+        if (!value.trim().equals("")) {
+            this.remove(root, 0, value);
+        }
     }
-    private void addWithRecursion(Node currentNode, int index, String value) {
+    private void remove(Node parentNode, int index, String value) {
+        Node currentNode = parentNode.next.get(value.charAt(index));
+        if (currentNode == null) {
+            return;
+        }
+
         // 终止条件
-        if (index == value.length()) {
-            if (!currentNode.isWord) {
-                currentNode.isWord = true;
-                size++;
+        if (index == value.length() - 1) {
+            if (currentNode.isWord) {
+                currentNode.isWord = false;
+                size--;
             }
             return;
         }
 
-        // 执行操作
-        char character = value.charAt(index);
-        if (currentNode.next.get(character) == null) {
-            currentNode.next.put(character, new Node());
-        }
-
         // 持续递归
-        this.addWithRecursion(currentNode.next.get(character), index + 1, value);
+        this.remove(currentNode, index + 1, value);
+
+        // 执行操作
+        if (currentNode.next.isEmpty()) {
+            parentNode.next.put(value.charAt(index), null);
+        }
     }
 
     // 判断元素
@@ -110,5 +125,43 @@ public class Trie {
             currentNode = currentNode.next.get(character);
         }
         return currentNode;
+    }
+
+
+    @Override
+    public String toString() {
+        // 获取字典树中所有词汇
+        Array<String> words = new Array<>();
+        words = this.getWords(root, new StringBuilder(), words);
+
+        // 将词汇集合拼接成字符串返回
+        StringBuilder result = new StringBuilder();
+        result.append('[');
+        int wordsSize = words.getSize();
+        for (int index = 0; index < wordsSize; index++) {
+            result.append(words.get(index));
+            if (index != wordsSize - 1) {
+                result.append(", ");
+            }
+        }
+        return result.append(']').toString();
+    }
+    private Array<String> getWords(Node currentNode, StringBuilder word, Array<String> words) {
+        // 终止条件
+        if (currentNode == null) {
+            return words;
+        }
+
+        // 持续递归
+        for (Character character : currentNode.next.keySet()) {
+            words = this.getWords(currentNode.next.get(character), word.append(character), words);
+            word.deleteCharAt(word.length() - 1);
+        }
+
+        // 执行操作
+        if (currentNode.isWord) {
+            words.add(word.toString());
+        }
+        return words;
     }
 }
