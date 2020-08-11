@@ -9,6 +9,10 @@ package top.woohoo.utils;
  */
 public class RandomUtil {
 
+    public static Integer generateInteger(int min, int max) {
+        return (int)(min+Math.random()*(max-min));
+    }
+
     public static Integer[] generateIntArray(int size, int min, int max) {
         Integer[] target = new Integer[size];
         for (int i = 0; i < size; i++) {
@@ -17,10 +21,8 @@ public class RandomUtil {
         return target;
     }
 
-    // 生成泛型数组
-    @SuppressWarnings({ "unchecked", "hiding" })
     public static Integer[] generateIntArrayNearlyOrdered(int size, int swapTimes) {
-        Integer target[] = new Integer[size];
+        Integer[] target = new Integer[size];
         for (int i=0; i<size-1; i++) {
             target[i] = i;
         }
