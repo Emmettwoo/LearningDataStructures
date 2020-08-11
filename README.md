@@ -22,7 +22,7 @@ Learning Data Structures并不是一个具体的项目，过完这个暑假就�
 - [x] Priority Queue 优先队列
 - [x] Segment Tree 线段树
 - [x] Trie 字典树
-- [ ] Union Find 并查集
+- [x] Union Find 并查集
 - [ ] AVL Tree 平衡二叉树
 - [ ] Red Black Tree 红黑树
 - [ ] Hash Table 哈希表
