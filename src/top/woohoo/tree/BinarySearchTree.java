@@ -116,9 +116,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
 
         // 持续递归
-        this.preOrder(node.left);
+        this.inOrder(node.left);
         System.out.print(node.value + " -> ");
-        this.preOrder(node.right);
+        this.inOrder(node.right);
     }
     public void postOrder() {
         this.postOrder(root);
@@ -131,8 +131,8 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
 
         // 持续递归
-        this.preOrder(node.left);
-        this.preOrder(node.right);
+        this.postOrder(node.left);
+        this.postOrder(node.right);
 
         // 执行操作
         System.out.print(node.value + " -> ");

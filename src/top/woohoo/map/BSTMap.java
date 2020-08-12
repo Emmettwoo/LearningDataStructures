@@ -1,7 +1,5 @@
 package top.woohoo.map;
 
-import top.woohoo.tree.BinarySearchTree;
-
 public class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
 
     class Node {
