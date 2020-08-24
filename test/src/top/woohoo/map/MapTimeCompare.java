@@ -1,5 +1,6 @@
 package top.woohoo.map;
 
+import top.woohoo.tree.RedBlackTree;
 import top.woohoo.utils.FileUtil;
 import top.woohoo.utils.TimingUtil;
 
@@ -9,14 +10,16 @@ import java.util.Collections;
 public class MapTimeCompare {
     /*
         Test Data: <pride and prejudice> (125901 words)
-        avlMap: Total Time: 61 ms
-        bstMap: Total Time: 60 ms
-        linkedListMap: Total Time: 9534 ms
+        redBlackTree: Total Time: 778 ms
+        avlMap: Total Time: 74 ms
+        bstMap: Total Time: 50 ms
+        linkedListMap: Total Time: 9904 ms
         ---
         Test Data: <pride and prejudice> (125901 words, sorted)
-        avlMap: Total Time: 44 ms
-        bstMap: Total Time: 10603 ms
-        linkedListMap: Total Time: 265 ms
+        redBlackTree: Total Time: 4944 ms
+        avlMap: Total Time: 52 ms
+        bstMap: Total Time: 10732 ms
+        linkedListMap: Total Time: 263 ms
      */
 
     public static void main(String[] args) {
@@ -24,6 +27,18 @@ public class MapTimeCompare {
         FileUtil.readFile("./test/resources/pride-and-prejudice.txt", testData);
         // Collections.sort(testData);
         System.out.println("Total words: " + testData.size());
+
+        TimingUtil.StartRecordTime();
+        RedBlackTree<String, Integer> redBlackTree = new RedBlackTree<>();
+        for (String data : testData) {
+            if (redBlackTree.contains(data)) {
+                redBlackTree.set(data, redBlackTree.get(data) + 1);
+            } else {
+                redBlackTree.add(data, 1);
+            }
+        }
+        TimingUtil.EndedRecordTime();
+        System.out.println("redBlackTree: " + TimingUtil.getTimeSpan());
 
         TimingUtil.StartRecordTime();
         AVLMap<String, Integer> avlMap = new AVLMap<>();
