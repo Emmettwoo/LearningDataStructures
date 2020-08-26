@@ -25,7 +25,7 @@ Learning Data Structures并不是一个具体的项目，过完这个暑假就�
 - [x] Union Find 并查集
 - [x] AVL Tree 平衡二叉树
 - [x] Red Black Tree 红黑树
-- [ ] Hash Table 哈希表
+- [x] Hash Table 哈希表
 
 ---
 
