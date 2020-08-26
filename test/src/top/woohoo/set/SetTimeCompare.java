@@ -9,14 +9,16 @@ import java.util.Collections;
 public class SetTimeCompare {
     /*
         Test Data: <pride and prejudice> (125901 words)
-        avlSet: Total Time: 59 ms
-        bstSet: Total Time: 46 ms
-        linkedListSet: Total Time: 458 ms
+        hashSet: Total Time: 48 ms
+        avlSet: Total Time: 104 ms
+        bstSet: Total Time: 52 ms
+        linkedListSet: Total Time: 475 ms
         ---
         Test Data: <pride and prejudice> (125901 words, sorted)
-        avlSet: Total Time: 59 ms
-        bstSet: Total Time: 4434 ms
-        linkedListSet: Total Time: 2240 ms
+        hashSet: Total Time: 64 ms
+        avlSet: Total Time: 88 ms
+        bstSet: Total Time: 4554 ms
+        linkedListSet: Total Time: 1733 ms
      */
 
     public static void main(String[] args) {
@@ -24,6 +26,14 @@ public class SetTimeCompare {
         FileUtil.readFile("./test/resources/pride-and-prejudice.txt", testData);
         // Collections.sort(testData);
         System.out.println("Total words: " + testData.size());
+
+        TimingUtil.StartRecordTime();
+        HashSet<String> hashSet = new HashSet<>();
+        for (String data : testData) {
+            hashSet.add(data);
+        }
+        TimingUtil.EndedRecordTime();
+        System.out.println("hashSet: " + TimingUtil.getTimeSpan());
 
         TimingUtil.StartRecordTime();
         AVLSet<String> avlSet = new AVLSet<>();
