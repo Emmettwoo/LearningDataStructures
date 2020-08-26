@@ -10,16 +10,18 @@ import java.util.Collections;
 public class MapTimeCompare {
     /*
         Test Data: <pride and prejudice> (125901 words)
-        redBlackTree: Total Time: 778 ms
-        avlMap: Total Time: 74 ms
-        bstMap: Total Time: 50 ms
-        linkedListMap: Total Time: 9904 ms
+        hashMap: Total Time: 84 ms
+        redBlackTree: Total Time: 852 ms
+        avlMap: Total Time: 55 ms
+        bstMap: Total Time: 171 ms
+        linkedListMap: Total Time: 10055 ms
         ---
         Test Data: <pride and prejudice> (125901 words, sorted)
-        redBlackTree: Total Time: 4944 ms
-        avlMap: Total Time: 52 ms
-        bstMap: Total Time: 10732 ms
-        linkedListMap: Total Time: 263 ms
+        hashMap: Total Time: 77 ms
+        redBlackTree: Total Time: 4972 ms
+        avlMap: Total Time: 60 ms
+        bstMap: Total Time: 10851 ms
+        linkedListMap: Total Time: 260 ms
      */
 
     public static void main(String[] args) {
@@ -27,6 +29,18 @@ public class MapTimeCompare {
         FileUtil.readFile("./test/resources/pride-and-prejudice.txt", testData);
         // Collections.sort(testData);
         System.out.println("Total words: " + testData.size());
+
+        TimingUtil.StartRecordTime();
+        HashMap<String, Integer> hashMap = new HashMap<>();
+        for (String data : testData) {
+            if (hashMap.contains(data)) {
+                hashMap.set(data, hashMap.get(data) + 1);
+            } else {
+                hashMap.add(data, 1);
+            }
+        }
+        TimingUtil.EndedRecordTime();
+        System.out.println("hashMap: " + TimingUtil.getTimeSpan());
 
         TimingUtil.StartRecordTime();
         RedBlackTree<String, Integer> redBlackTree = new RedBlackTree<>();
