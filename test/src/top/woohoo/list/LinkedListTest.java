@@ -32,6 +32,19 @@ public class LinkedListTest {
         System.out.println("Remove Result: " + linkedList);
     }
 
+    @Test
+    public void GetTheNthElementFromTheBottom() {
+        LinkedList<Integer> testData = this.generateIntegerLinkedList(11, 0, 1000);
+        System.out.println(testData.findNthToTail(2));
+    }
+
+    @Test
+    public void reverseLinkedList() {
+        LinkedList<Integer> testData = this.generateIntegerLinkedList(11, 0, 1000);
+        testData.reverse();
+        System.out.println("New  Data: " + testData);
+    }
+
     private LinkedList<Integer> generateIntegerLinkedList(int size, int min, int max) {
         LinkedList<Integer> linkedList = new LinkedList<>();
         Integer[] testData = RandomUtil.generateIntArray(size, min, max);

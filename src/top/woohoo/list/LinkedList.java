@@ -56,6 +56,13 @@ public class LinkedList<T> {
             return this.seekByIndex(index).value;
         }
     }
+    public T findNthToTail(int n) {
+        Node targetNode = dummyHead.next;
+        while (n++ < size) {
+            targetNode = targetNode.next;
+        }
+        return targetNode.value;
+    }
 
     // 数据修改
     public void set(int index, T value) {
@@ -64,6 +71,20 @@ public class LinkedList<T> {
         } else {
             this.seekByIndex(index).value = value;
         }
+    }
+    public void reverse() {
+        Node previousNode = dummyHead;
+        Node currentNode = previousNode.next;
+
+        while(currentNode != null) {
+            Node nextNode = currentNode.next;
+            currentNode.next = previousNode;
+            previousNode = currentNode;
+            currentNode = nextNode;
+        }
+        // 一定不要忘了，把原链表第一个节点值的next置空
+        dummyHead.next.next = null;
+        dummyHead.next = previousNode;
     }
 
     // 数据删除
