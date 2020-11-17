@@ -27,7 +27,8 @@ Learning Data Structures并不是一个具体的项目，过完这个暑假就�
 - [x] Red Black Tree 红黑树
 - [x] Hash Table 哈希表
 
----
+## Relate.联动
+- [LearningLeetCode](https://github.com/Emmettwoo/LearningLeetCode)
 
 ## Thanks.鸣谢
 
